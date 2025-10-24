@@ -26,7 +26,7 @@ function actualizarQuote(){
         autorQuote.textContent = arrQuote[numRandom].author;
         tag1.textContent = arrQuote[numRandom].tags[0];
         tag2.textContent = arrQuote[numRandom].tags[1];
-        quoteText.innerText = arrQuote[numRandom].quote;
+        quoteText.textContent = arrQuote[numRandom].quote;
     }
     quoteActual = numRandom;
     return
@@ -36,9 +36,9 @@ fetch(url)
     .then((res) => res.json())
     .then((data) => { 
         arrQuote =  data ;
-        
-        actualizarQuote();
         quoteCard.classList.remove("loading");
+        setInterval(actualizarQuote() ,1200);
+        
     })
     .catch((error)=> {
     })
