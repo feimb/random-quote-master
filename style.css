@@ -1,0 +1,139 @@
+:root {
+    --card-color: #20293A;
+    --tags-color: #AEB0FF;
+    --bg-color: #111629;
+    --img-color: #4A5567;
+    --font-color:#E3E8EF;
+
+    --font-lg: 1.5rem;
+    --font-md: 1rem;
+    --font-sm: .625rem;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:"Outfit", sans-serif;
+}
+button{
+    font-family:"Outfit", sans-serif;
+}
+body {
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.quote-card{
+    position: relative;
+    padding: 30px;
+    background-color: var(--card-color);
+    width: 95%;
+    max-width: 500px;
+    height: 206px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    overflow: hidden;
+
+}
+.autor-quote{
+    font-size: var(--font-md);
+    text-align: center;
+    font-weight: bolder;
+}
+.tags{
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+}
+.tag{
+    font-size: var(--font-sm);
+    color: var(--tags-color);
+    border-radius: 20px;
+    padding: 1px 10px;
+    border: 1.5px solid var(--tags-color);
+}
+.quote-text{
+    font-size: var(--font-lg);
+    text-align: center;
+    margin-top: 30px;
+}
+.bg-image{
+    position: absolute;
+    bottom: 0;
+}
+.buttons-container{
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+.buttons-container > button{
+    color: var(--font-color);
+    border: none;
+    background: var(--card-color);
+    padding: 5px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center; 
+    gap: 8px;
+}
+.buttons-container > button > img{
+    color: var(--img-color);
+}   
+
+
+
+/* skeleton shimmed */
+/* ESTADO DE CARGA */
+.loading .autor-quote,
+.loading .tag,
+.loading .quote-text,
+.loading  {
+  color: transparent;
+  position: relative;
+  border-radius: 6px;
+  background: linear-gradient(
+    100deg,
+    rgba(74, 85, 103, 0.4) 30%,   
+    rgba(174, 176, 255, 0.15) 50%, 
+    rgba(74, 85, 103, 0.4) 70%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+/* Ajustes por tipo */
+.loading .autor-quote {
+  height: 20px;
+  width: 60%;
+  margin-bottom: 12px;
+}
+
+.loading .tags {
+  display: flex;
+  gap: 8px;
+}
+
+.loading .tag {
+  display: inline-block;
+  width: 60px;
+  height: 14px;
+}
+
+.loading .quote-text {
+  height: 40px;
+  width: 100%;
+}
+
+
+/* Animación shimmer */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
