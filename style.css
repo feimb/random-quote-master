@@ -110,6 +110,9 @@ body {
 
 /* Ajustes por tipo */
 .loading .autor-quote {
+.loading .quote-text {
+  height: 40px;
+  width: 100%;
   height: 20px;
   width: 60%;
   margin-bottom: 12px;

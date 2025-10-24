@@ -7,6 +7,7 @@ const btnShare = document.querySelector(".share-btn");
 const quoteCard = document.querySelector(".quote-card");
 var arrQuote = [];
 const url = "https://raw.githubusercontent.com/devchallenges-io/curriculum/refs/heads/main/3-javascript/challenges/group_1/data/random-quotes.json";
+// const url = "https://api.quotable.io/quotes";
 // Simular carga 
 // setTimeout(() => {
 //   quoteCard.classList.remove("loading");
@@ -17,29 +18,32 @@ const url = "https://raw.githubusercontent.com/devchallenges-io/curriculum/refs/
 //     "tags": ["motivation", "success"]
 //   },
 const random = (min, max) => { 
-    return Math.floor(Math.random() * ( max - min + 1) + 1);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const quoteActual = -1;
 function actualizarQuote(){
     let numRandom = random(0, arrQuote.length);
-    if(quoteActual != numRandom){
-        autorQuote.textContent = arrQuote[numRandom].author;
-        tag1.textContent = arrQuote[numRandom].tags[0];
-        tag2.textContent = arrQuote[numRandom].tags[1];
-        quoteText.textContent = arrQuote[numRandom].quote;
+    const q = arrQuote[numRandom];
+    if (numRandom != quoteActual) {
+        autorQuote.textContent = q.author;
+        tag1.textContent = q.tags[0];
+        tag2.textContent = q.tags[1];
+        quoteText.textContent = q.quote;        
     }
     quoteActual = numRandom;
-    return
 }
 quoteCard.classList.add("loading");
 fetch(url)
     .then((res) => res.json())
     .then((data) => { 
-        arrQuote =  data ;
+        arrQuote =  data;
+        console.log(arrQuote)
         quoteCard.classList.remove("loading");
-        setInterval(actualizarQuote() ,1200);
+        actualizarQuote();
+        
         
     })
     .catch((error)=> {
     })
 
+btnRandom.addEventListener("click", actualizarQuote)
