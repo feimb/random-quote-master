@@ -18,17 +18,17 @@ const url = "https://raw.githubusercontent.com/devchallenges-io/curriculum/refs/
 //     "tags": ["motivation", "success"]
 //   },
 const random = (min, max) => { 
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const quoteActual = -1;
 function actualizarQuote(){
-    let numRandom = random(0, arrQuote.length);
+    let numRandom = random(0, arrQuote.length - 1);
     const q = arrQuote[numRandom];
     if (numRandom != quoteActual) {
         autorQuote.textContent = q.author;
         tag1.textContent = q.tags[0];
         tag2.textContent = q.tags[1];
-        quoteText.textContent = q.quote;        
+        quoteText.textContent =`"${q.quote}"`;        
     }
     quoteActual = numRandom;
 }
@@ -46,4 +46,17 @@ fetch(url)
     .catch((error)=> {
     })
 
-btnRandom.addEventListener("click", actualizarQuote)
+btnRandom.addEventListener("click", actualizarQuote);
+btnShare.addEventListener("click", ()=> {
+    const textToCopy = `"${quoteText.textContent}" — ${autorQuote.textContent}`;
+
+    navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+        btnShare.textContent = "Copied!";
+        setTimeout(() => {
+            btnShare.innerHTML = 'Share <img src="resources/link.svg" alt="icon">';
+        }, 1500);        })
+        .catch((err) => {
+            console.error("Failed to copy text: ", err);
+        });
+})

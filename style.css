@@ -18,6 +18,7 @@
 }
 button{
     font-family:"Outfit", sans-serif;
+    cursor: pointer;
 }
 body {
     background-color: var(--bg-color);
@@ -34,7 +35,7 @@ body {
     background-color: var(--card-color);
     width: 95%;
     max-width: 500px;
-    height: 206px;
+    min-height: 206px;
     display: flex;
     align-items: center;
     flex-direction: column;
